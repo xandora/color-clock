@@ -9,7 +9,7 @@
 
 <body onload="mytime(); draw()">
     <div id="container">
-        <canvas id="icon" width="150" height="150">
+        <canvas id="icon" width="10" height="10">
 
         </canvas>
     </div>
@@ -29,35 +29,38 @@
                 var ctx = canvas.getContext('2d');
 
                 ctx.fillStyle = timeColor;
-                ctx.fillRect(0,0,150,150);
+                ctx.fillRect(0,0,10,10);
             }
 
             canvas.toBlob(function(blob) {
             var newImg = document.createElement('img'),
-                url = URL.createObjectURL(blob);
+            url = URL.createObjectURL(blob);
 
             newImg.onload = function() {
                 // no longer need to read the blob so it's revoked
                 URL.revokeObjectURL(url);
                 };
                 const ico = document.createElement("link");
-                ico.setAttribute('rel', 'icon'); ico.setAttribute('type', 'image/png'); ico.setAttribute('href', url);
+                ico.setAttribute('rel', 'icon'); 
+                ico.setAttribute('type', 'image/png'); 
+                ico.setAttribute('href', url);
                 document.head.appendChild(ico);
+                const t = setTimeout('draw()', 250);
             })
         }
 
         function mytime() {
-            var d = new Date();
-            let h = d.getHours();
-            let m = d.getMinutes();
-            let s = d.getSeconds();
+            const d = new Date();
+            const h = d.getHours();
+            const m = d.getMinutes();
+            const s = d.getSeconds();
             if (h < 10) { h = "0" + h; }
             if (m < 10) { m = "0" + m; }
             if (s < 10) { s = "0" + s; }
             document.getElementById('timehere').innerHTML = h + ":" + m + ":" + s + " ";
             timeColor = "#" + h + m + s;
             document.body.style.backgroundColor = timeColor;
-            let t = setTimeout('mytime()', 250);
+            const t = setTimeout('mytime()', 250);
             //console.log(timeColor);
         }
 
