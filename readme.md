@@ -6,10 +6,14 @@ A clock that changes the background colour every second, slowly rotating through
 
 ### Improvements:
 
-Implement colour translation function that either:
+* Implement colour translation function that either:
 
-Maps `#000000` to `#FFFFFF` over the 864000 seconds of the day.
+   Maps `#000000` to `#FFFFFF` over the 864000 seconds of the day.
 
-OR
+   OR
 
-Maps Hours, Minutes, and Days to `00` to `FF`.
+   Maps Hours, Minutes, and Days to `00` to `FF`.
+
+* Update the favicon at the same time.
+
+   "You can make an "image" with `<canvas>` and then export it to a blob, then create a data-uri from that blob, and set it to the src of the image tag"
