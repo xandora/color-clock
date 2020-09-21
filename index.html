@@ -13,6 +13,11 @@
     <script>
         const time = document.createElement("h1");
         time.id = 'timehere';
+        time.style.alignSelf = "center";
+        time.style.margin = "auto";
+        time.style.textAlign = "center";
+        time.style.color = "white";
+        time.style.mixBlendMode = "difference";
         let timeColor;
 
         function mytime() {
@@ -30,6 +35,10 @@
             //console.log(timeColor);
         }
         const container = document.querySelector("#container");
+        container.style.display = "flex";
+        container.style.justiftContent = "center";
+        container.style.alignItems = "center";
+        container.style.height = "100vh";
         container.appendChild(time);
 
     </script>
