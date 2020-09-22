@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colour Clock</title>
+    <link id="favicon"/>
 </head>
 
 <body onload="mytime(); draw()">
@@ -41,10 +42,11 @@
                 URL.revokeObjectURL(url);
                 };
                 const ico = document.createElement("link");
+                ico.id = "favicon";
                 ico.setAttribute('rel', 'icon'); 
                 ico.setAttribute('type', 'image/png'); 
                 ico.setAttribute('href', url);
-                document.head.appendChild(ico);
+                document.head.replaceChild(ico, document.getElementById("favicon"));
                 const t = setTimeout('draw()', 250);
             })
         }
