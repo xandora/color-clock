@@ -5,24 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colour Clock</title>
-    <link id="favicon"/>
+    <link id="favicon">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet"> 
 </head>
 
 <body onload="mytime(); draw()">
-    <div id="container">
-        <canvas id="icon" width="10" height="10">
-
-        </canvas>
-    </div>
     <script>
+        const container = document.createElement("div");
+        const canvas = document.createElement("canvas");
         const time = document.createElement("h1");
-        let timeColor;
+
+        container.id = "container";
+        container.style.display = "flex";
+        container.style.justiftContent = "center";
+        container.style.alignItems = "center";
+        container.style.height = "100vh";
+
+        canvas.id = "icon";
+        canvas.width = "10";
+        canvas.height = "10";
+
         time.id = 'timehere';
+        time.style.fontFamily ="'Nova Mono', monospace";
+        time.style.position = "relative";
+        time.style.left = "-10px";
         time.style.alignSelf = "center";
         time.style.margin = "auto";
         time.style.textAlign = "center";
         time.style.color = "white";
         time.style.mixBlendMode = "difference";
+
+        document.body.appendChild(container);
+        container.appendChild(canvas);
+        container.appendChild(time);
+
+        let timeColor;
 
         function draw() {
             var canvas = document.getElementById("icon");
@@ -30,24 +47,24 @@
                 var ctx = canvas.getContext('2d');
 
                 ctx.fillStyle = timeColor;
-                ctx.fillRect(0,0,10,10);
+                ctx.fillRect(0, 0, 16, 16);
             }
 
-            canvas.toBlob(function(blob) {
-            var newImg = document.createElement('img'),
-            url = URL.createObjectURL(blob);
+            canvas.toBlob(function (blob) {
+                var newImg = document.createElement('img'),
+                    url = URL.createObjectURL(blob);
 
-            newImg.onload = function() {
-                // no longer need to read the blob so it's revoked
-                URL.revokeObjectURL(url);
+                //Learn what this does...
+                newImg.onload = function () {
+                    URL.revokeObjectURL(url);
                 };
                 const ico = document.createElement("link");
                 ico.id = "favicon";
-                ico.setAttribute('rel', 'icon'); 
-                ico.setAttribute('type', 'image/png'); 
+                ico.setAttribute('rel', 'icon');
+                ico.setAttribute('type', 'image/png');
                 ico.setAttribute('href', url);
                 document.head.replaceChild(ico, document.getElementById("favicon"));
-                const t = setTimeout('draw()', 250);
+                const t = setTimeout('draw()', 1000);
             })
         }
 
@@ -59,20 +76,11 @@
             if (h < 10) { h = "0" + h; }
             if (m < 10) { m = "0" + m; }
             if (s < 10) { s = "0" + s; }
-            document.getElementById('timehere').innerHTML = h + ":" + m + ":" + s + " ";
-            timeColor = "#" + h + m + s;
+            document.getElementById('timehere').innerHTML = h + ":" + m + ":" + s;
+            timeColor = `#${h}${m}${s}`;
             document.body.style.backgroundColor = timeColor;
-            const t = setTimeout('mytime()', 250);
-            //console.log(timeColor);
+            const t = setTimeout('mytime()', 500);
         }
-
-        const container = document.querySelector("#container");
-        container.style.display = "flex";
-        container.style.justiftContent = "center";
-        container.style.alignItems = "center";
-        container.style.height = "100vh";
-        container.appendChild(time);
-
     </script>
 </body>
 
