@@ -17,3 +17,4 @@ A clock that changes the background colour every second, slowly rotating through
 * Update the favicon at the same time.
 
    - [x] "You can make an "image" with `<canvas>` and then export it to a blob, then create a data-uri from that blob, and set it to the src of the image tag"
+[x]   "You can make an "image" with `<canvas>` and then export it to a blob, then create a data-uri from that blob, and set it to the src of the image tag"
