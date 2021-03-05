@@ -12,3 +12,4 @@ insert_final_newline = true
 [*.html]
 indent_style = space
 indent_size = 7
+tab_width = 7
